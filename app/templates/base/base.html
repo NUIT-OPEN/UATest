@@ -1,0 +1,27 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/utils.html' as utils %}
+
+{% block title %}
+    Title
+{% endblock %}
+
+{% block metas %}
+    {{ super() }}
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+{% endblock %}
+
+{% block navbar %}
+    {% include 'base/navbar.html' %}
+    {{ utils.flashed_messages(dismissible=True) }}
+{% endblock %}
+
+{% block content %}
+    Content Block
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+    用户登录
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="padding-top: 16px">
+        <div class="col-md-4 col-sm-12">
+            {{ wtf.quick_form(g.form) }}
+        </div>
+    </div>
+{% endblock %}

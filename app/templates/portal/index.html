@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p>User Agent: {{ request.user_agent }}</p>
+        <p style="line-break: anywhere">Cookies: {{ dict(request.cookies.items()) }}</p>
+        <p>Session: {{ dict(session.items()) }}</p>
+
+        <script type="text/javascript"
+                src="{{ url_for('static', filename='http_assets.pyecharts.org_assets_echarts.min.js') }}"></script>
+        <script type="text/javascript"
+                src="{{ url_for('static', filename='http_requirejs.org_docs_release_2.3.6_minified_require.js') }}"></script>
+        <div style="display: flex">
+            {{ charts.pie_1 }}
+            {{ charts.pie_2 }}
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>当前浏览器</th>
+                <th>当前操作系统</th>
+                <th>网站注册用户量</th>
+                <th>网站总用户量</th>
+                <th>网站总访问量</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ log.browser }}</td>
+                <td>{{ log.platform }}</td>
+                <td>{{ count.user_reg }}</td>
+                <td>{{ count.user }}</td>
+                <td>{{ count.access }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

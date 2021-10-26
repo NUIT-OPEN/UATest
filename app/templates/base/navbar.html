@@ -1,0 +1,35 @@
+{% if session.user %}
+    {% set nav_items = {
+    'portal.index': dict(title='首页', pos='left'),
+    'user.logout': dict(title='注销（%s）' % session.user.username, pos='right'),
+} %}
+{% else %}
+    {% set nav_items = {
+    'portal.index': dict(title='首页', pos='left'),
+    'user.login': dict(title='登录', pos='right'),
+    'user.register_': dict(title='注册', pos='right'),
+} %}
+{% endif %}
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('portal.index') }}">UATest</a>
+        </div>
+        <div>
+            {% for pos in ['left', 'right'] %}
+                <ul class="nav navbar-nav navbar-{{ pos }}">
+                    {% for endpoint, item in nav_items.items() %}
+                        {% if item.pos != pos %} {% continue %} {% endif %}
+                        {% set is_active = endpoint == request.endpoint %}
+                        <li class="{{ 'active' if is_active else '' }}">
+                            <a href="{{ url_for(endpoint) }}">
+                                {{ item.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+</nav>
